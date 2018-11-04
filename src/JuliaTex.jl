@@ -1,4 +1,4 @@
-module JuliaTeX
+module JuliaTex
 
 using Formatting
 using StatsFuns
