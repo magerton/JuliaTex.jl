@@ -37,7 +37,7 @@ function texifycols(x::RealOrVec, se::RealOrVec; kwargs...)
     return texifycols(x, se, t, p; kwargs...)
 end
 
-function textable(strcols::NTuple{4,Vector{String}}, nms::Vector{String}=[""]; caption="Caption", label="label", note="")
+function textable(strcols::NTuple{4,Vector{String}}, nms::Vector{String}=[""]; caption="Caption", label="label", note="", fileheader="", kwargs...)
     strx, strse, strt, strp = strcols
     if length(nms) != length(strx)
         strnms = padstrvec(["\$ \\theta_{$i} \$" for i in 1:length(strx)])
@@ -49,7 +49,7 @@ function textable(strcols::NTuple{4,Vector{String}}, nms::Vector{String}=[""]; c
     tbl = strnms .* " & " .* strx .* " & " .* strse .* " & " .* strt .* " & " .* strp .* " \\\\"
 
     str1 =[
-        "%!TEX root = ./paper2.tex\n",
+        fileheader,
         "\\begin{table}[ht]",
             "\t\\centering",
             "\t\\caption{$caption}",
